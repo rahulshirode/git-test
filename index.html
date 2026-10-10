@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8f7f4">
+    <meta name="description" content="Rahul Shirode is a WordPress developer building thoughtful, fast, and easy-to-manage websites.">
+    <title>Rahul Shirode — WordPress Developer</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --paper: #f8f7f4;
+            --ink: #20231f;
+            --muted: #70736c;
+            --line: #e5e3dd;
+            --green: #355b46;
+            --lime: #d4f078;
+            --serif: Georgia, "Times New Roman", serif;
+            --sans: "Segoe UI", Arial, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--sans);
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; }
+        button { font: inherit; }
+        .wrap { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+
+        .site-header {
+            position: sticky;
+            z-index: 10;
+            top: 0;
+            border-bottom: 1px solid rgb(32 35 31 / 7%);
+            background: rgb(248 247 244 / 92%);
+            backdrop-filter: blur(14px);
+        }
+        .nav {
+            display: flex;
+            min-height: 76px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: -.04em;
+        }
+        .brand-mark {
+            display: grid;
+            width: 32px;
+            height: 32px;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--green);
+            color: white;
+            font-family: var(--serif);
+            font-size: 16px;
+            font-weight: 400;
+        }
+        .nav-links { display: flex; align-items: center; gap: 34px; }
+        .nav-links a {
+            text-decoration: none;
+            color: #555851;
+            font-size: 13px;
+            transition: color .2s ease;
+        }
+        .nav-links a:hover { color: var(--green); }
+        .nav-links .nav-cta {
+            padding: 11px 17px;
+            border: 1px solid var(--line);
+            border-radius: 99px;
+            color: var(--ink);
+            transition: background .2s ease, border-color .2s ease;
+        }
+        .nav-links .nav-cta:hover { border-color: var(--green); background: white; }
+        .menu-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            padding: 10px;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            background: transparent;
+            color: var(--ink);
+            cursor: pointer;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 18px;
+            height: 1px;
+            margin: 5px auto;
+            background: currentColor;
+        }
+
+        .hero { padding: 94px 0 88px; }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.04fr .96fr;
+            align-items: center;
+            gap: 74px;
+        }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin: 0 0 25px;
+            color: var(--green);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+        }
+        .eyebrow::before {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #85a75d;
+            content: "";
+        }
+        h1, h2, h3, p { margin-top: 0; }
+        h1 {
+            max-width: 590px;
+            margin-bottom: 22px;
+            font-size: clamp(48px, 6.2vw, 76px);
+            font-weight: 500;
+            letter-spacing: -.075em;
+            line-height: .99;
+        }
+        h1 span { color: var(--green); font-family: var(--serif); font-weight: 400; font-style: italic; }
+        .hero-copy {
+            max-width: 440px;
+            margin-bottom: 29px;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+        .button {
+            display: inline-flex;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 19px;
+            border: 1px solid var(--green);
+            border-radius: 99px;
+            background: var(--green);
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: transform .2s ease, background .2s ease;
+        }
+        .button:hover { transform: translateY(-2px); background: #294737; }
+        .button.secondary { border-color: var(--line); background: transparent; color: var(--ink); }
+        .button.secondary:hover { border-color: var(--green); background: white; }
+        .arrow { font-size: 17px; line-height: 1; }
+
+        .visual {
+            position: relative;
+            display: grid;
+            min-height: 390px;
+            place-items: center;
+            overflow: hidden;
+            border-radius: 8px 110px 8px 8px;
+            background: #e8ebdf;
+        }
+        .visual::before, .visual::after {
+            position: absolute;
+            border: 1px solid rgb(53 91 70 / 12%);
+            border-radius: 50%;
+            content: "";
+        }
+        .visual::before { width: 310px; height: 310px; }
+        .visual::after { width: 390px; height: 390px; }
+        .orbit {
+            position: absolute;
+            z-index: 1;
+            top: 53px;
+            right: 48px;
+            display: grid;
+            width: 67px;
+            height: 67px;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--lime);
+            color: var(--green);
+            font-family: var(--serif);
+            font-size: 25px;
+            transform: rotate(12deg);
+        }
+        .browser {
+            position: relative;
+            z-index: 2;
+            width: min(79%, 360px);
+            overflow: hidden;
+            border: 1px solid rgb(32 35 31 / 8%);
+            border-radius: 8px;
+            background: #fffefa;
+            box-shadow: 0 28px 70px rgb(32 35 31 / 13%);
+            transform: rotate(-3deg);
+        }
+        .browser-bar {
+            display: flex;
+            height: 27px;
+            align-items: center;
+            gap: 4px;
+            padding: 0 10px;
+            border-bottom: 1px solid #eeece5;
+        }
+        .browser-bar i { width: 5px; height: 5px; border-radius: 50%; background: #d8d7cf; }
+        .browser-content { padding: 22px; }
+        .mock-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+            color: #555851;
+            font-size: 7px;
+        }
+        .mock-logo { color: var(--green); font-family: var(--serif); font-size: 14px; font-weight: 700; }
+        .mock-hero {
+            position: relative;
+            min-height: 144px;
+            overflow: hidden;
+            padding: 23px 16px;
+            border-radius: 3px;
+            background: #f0eee5;
+        }
+        .mock-hero::after {
+            position: absolute;
+            right: 15px;
+            bottom: -36px;
+            width: 104px;
+            height: 128px;
+            border-radius: 52% 48% 10% 10%;
+            background: #c0c9a9;
+            content: "";
+            transform: rotate(18deg);
+        }
+        .mock-kicker { margin-bottom: 7px; color: #818275; font-size: 6px; letter-spacing: .12em; text-transform: uppercase; }
+        .mock-title { position: relative; z-index: 1; max-width: 132px; margin-bottom: 11px; font-family: var(--serif); font-size: 21px; line-height: 1.05; }
+        .mock-link { display: inline-block; padding-bottom: 3px; border-bottom: 1px solid var(--green); color: var(--green); font-size: 6px; }
+        .mock-blocks { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; margin-top: 10px; }
+        .mock-blocks i { height: 32px; border-radius: 2px; background: #e9e7df; }
+        .visual-note {
+            position: absolute;
+            right: 18px;
+            bottom: 20px;
+            z-index: 3;
+            padding: 10px 13px;
+            border: 1px solid rgb(32 35 31 / 7%);
+            border-radius: 4px;
+            background: #fffefa;
+            color: #61645d;
+            font-size: 10px;
+            box-shadow: 0 8px 25px rgb(32 35 31 / 6%);
+        }
+
+        .strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+        .strip-inner { display: flex; min-height: 74px; align-items: center; justify-content: space-between; gap: 20px; }
+        .strip-label { color: var(--muted); font-size: 12px; }
+        .skill-list { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
+        .skill-list span { padding: 8px 12px; border: 1px solid var(--line); border-radius: 99px; color: #50534c; font-size: 11px; }
+
+        .section { padding: 103px 0; }
+        .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 38px; }
+        .section-kicker { margin-bottom: 13px; color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+        h2 { margin-bottom: 0; font-size: clamp(34px, 4.5vw, 52px); font-weight: 500; letter-spacing: -.065em; line-height: 1.06; }
+        .section-intro { max-width: 385px; margin-bottom: 2px; color: var(--muted); font-size: 14px; line-height: 1.8; }
+        .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .service-card { min-height: 230px; padding: 26px; border: 1px solid var(--line); border-radius: 5px; background: #fbfaf8; }
+        .service-number { display: inline-grid; width: 36px; height: 36px; place-items: center; margin-bottom: 29px; border-radius: 50%; background: #edf0e7; color: var(--green); font-family: var(--serif); font-size: 14px; }
+        .service-card h3 { margin-bottom: 10px; font-size: 17px; font-weight: 600; letter-spacing: -.03em; }
+        .service-card p { max-width: 280px; margin-bottom: 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+
+        .about { padding: 76px 0; background: #e9ecdf; }
+        .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; align-items: start; gap: 90px; }
+        .about-grid h2 { max-width: 360px; }
+        .about-copy p { max-width: 590px; margin-bottom: 17px; color: #5e6259; font-size: 15px; line-height: 1.9; }
+        .about-copy p:last-child { margin-bottom: 0; }
+
+        .contact { padding: 93px 0; }
+        .contact-panel {
+            position: relative;
+            overflow: hidden;
+            padding: 57px;
+            border-radius: 6px 70px 6px 6px;
+            background: var(--green);
+            color: white;
+        }
+        .contact-panel::after {
+            position: absolute;
+            top: -116px;
+            right: -45px;
+            width: 330px;
+            height: 330px;
+            border: 1px solid rgb(255 255 255 / 13%);
+            border-radius: 50%;
+            box-shadow: 0 0 0 40px rgb(255 255 255 / 3%), 0 0 0 80px rgb(255 255 255 / 3%);
+            content: "";
+        }
+        .contact-panel .section-kicker { color: var(--lime); }
+        .contact-panel h2 { position: relative; z-index: 1; max-width: 550px; margin-bottom: 14px; }
+        .contact-panel p:not(.section-kicker) { position: relative; z-index: 1; max-width: 460px; margin-bottom: 25px; color: rgb(255 255 255 / 75%); font-size: 14px; line-height: 1.8; }
+        .contact-panel .button { position: relative; z-index: 1; border-color: var(--lime); background: var(--lime); color: var(--ink); }
+        .contact-panel .button:hover { background: #e0fa9e; }
+        footer { padding: 22px 0; border-top: 1px solid var(--line); }
+        .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 11px; }
+        .footer-inner a { text-decoration: none; }
+        .footer-inner a:hover { color: var(--green); }
+
+        :focus-visible { outline: 3px solid #8ba95e; outline-offset: 4px; }
+        @media (max-width: 760px) {
+            .wrap { width: min(100% - 36px, 560px); }
+            .nav { min-height: 68px; }
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: absolute;
+                top: 68px;
+                right: 18px;
+                left: 18px;
+                display: none;
+                align-items: stretch;
+                gap: 0;
+                padding: 8px 18px;
+                border: 1px solid var(--line);
+                border-radius: 8px;
+                background: var(--paper);
+                box-shadow: 0 14px 35px rgb(32 35 31 / 9%);
+            }
+            .nav-links.is-open { display: flex; flex-direction: column; }
+            .nav-links a { padding: 14px 0; }
+            .nav-links .nav-cta { margin: 5px 0 10px; padding: 12px 14px; text-align: center; }
+            .hero { padding: 66px 0 58px; }
+            .hero-grid { grid-template-columns: 1fr; gap: 42px; }
+            h1 { max-width: 510px; font-size: clamp(48px, 12vw, 68px); }
+            .visual { min-height: 340px; }
+            .strip-inner { align-items: flex-start; flex-direction: column; justify-content: center; padding: 20px 0; }
+            .skill-list { justify-content: flex-start; }
+            .section { padding: 75px 0; }
+            .section-heading { align-items: flex-start; flex-direction: column; margin-bottom: 27px; }
+            .service-grid { grid-template-columns: 1fr; gap: 10px; }
+            .service-card { min-height: 0; padding: 22px; }
+            .service-number { margin-bottom: 18px; }
+            .about { padding: 65px 0; }
+            .about-grid { grid-template-columns: 1fr; gap: 24px; }
+            .contact { padding: 65px 0; }
+            .contact-panel { padding: 39px 27px; border-top-right-radius: 48px; }
+            .contact-panel::after { right: -205px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav wrap" aria-label="Main navigation">
+            <a class="brand" href="#home" aria-label="Rahul Shirode, home">
+                <span class="brand-mark" aria-hidden="true">R</span>
+                <span>Rahul Shirode</span>
+            </a>
+            <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">
+                <span></span><span></span>
+            </button>
+            <div class="nav-links" id="nav-links">
+                <a href="#services">What I do</a>
+                <a href="#about">About</a>
+                <a class="nav-cta" href="#contact">Let’s talk <span class="arrow" aria-hidden="true">↗</span></a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-grid wrap">
+                <div>
+                    <p class="eyebrow">WordPress developer</p>
+                    <h1>Thoughtful websites.<br><span>Built to work.</span></h1>
+                    <p class="hero-copy">Hi, I’m Rahul. I build polished, practical WordPress websites that help businesses show up well online—and make managing a site feel simple.</p>
+                    <div class="actions">
+                        <a class="button" href="#contact">Have a project? <span class="arrow" aria-hidden="true">↗</span></a>
+                        <a class="button secondary" href="#services">Explore what I do</a>
+                    </div>
+                </div>
+                <div class="visual" aria-label="Illustration of a thoughtfully designed website">
+                    <span class="orbit" aria-hidden="true">R.</span>
+                    <div class="browser" aria-hidden="true">
+                        <div class="browser-bar"><i></i><i></i><i></i></div>
+                        <div class="browser-content">
+                            <div class="mock-nav"><span class="mock-logo">fieldnotes.</span><span>ABOUT &nbsp;&nbsp; WORK &nbsp;&nbsp; CONTACT</span></div>
+                            <div class="mock-hero">
+                                <p class="mock-kicker">Made for the everyday</p>
+                                <p class="mock-title">A little more room to grow.</p>
+                                <span class="mock-link">Discover the story ↗</span>
+                            </div>
+                            <div class="mock-blocks"><i></i><i></i><i></i></div>
+                        </div>
+                    </div>
+                    <span class="visual-note">Designed with care, built for people.</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="strip">
+            <div class="strip-inner wrap">
+                <span class="strip-label">Good work, from first idea to launch.</span>
+                <div class="skill-list" aria-label="Services and technologies">
+                    <span>WordPress</span><span>WooCommerce</span><span>Responsive design</span><span>Site care</span>
+                </div>
+            </div>
+        </div>
+
+        <section class="section" id="services">
+            <div class="wrap">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">What I do</p>
+                        <h2>Made for your next step.</h2>
+                    </div>
+                    <p class="section-intro">From a fresh idea to a site that needs a little attention, I can help you build a better home for your business online.</p>
+                </div>
+                <div class="service-grid">
+                    <article class="service-card">
+                        <span class="service-number" aria-hidden="true">01</span>
+                        <h3>WordPress websites</h3>
+                        <p>Custom, easy-to-use websites shaped around your brand, your goals, and the people you want to reach.</p>
+                    </article>
+                    <article class="service-card">
+                        <span class="service-number" aria-hidden="true">02</span>
+                        <h3>WooCommerce stores</h3>
+                        <p>A clear, thoughtful shopping experience that makes it easier for customers to find and buy what they need.</p>
+                    </article>
+                    <article class="service-card">
+                        <span class="service-number" aria-hidden="true">03</span>
+                        <h3>Improvements &amp; care</h3>
+                        <p>Helpful updates, performance improvements, and ongoing WordPress support to keep your site moving forward.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="about-grid wrap">
+                <div>
+                    <p class="section-kicker">A little about me</p>
+                    <h2>Good websites start with a good conversation.</h2>
+                </div>
+                <div class="about-copy">
+                    <p>I’m Rahul Shirode, a WordPress developer who cares about the details behind a good website: a clear purpose, an easy experience, and a setup that makes sense for the people using it.</p>
+                    <p>I work closely with you to understand what you need, then bring the design and development together into something useful, responsive, and ready to grow with your business.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <div class="contact-panel wrap">
+                <p class="section-kicker">Let’s make it happen</p>
+                <h2>A good website could be your next big move.</h2>
+                <p>Have an idea, a project, or a site that needs a fresh start? Tell me a little about it and let’s figure out what’s possible.</p>
+                <a class="button" href="mailto:?subject=WordPress%20project%20inquiry">Get in touch <span class="arrow" aria-hidden="true">↗</span></a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner wrap">
+            <span>© <span id="year">2026</span> Rahul Shirode. Built with care.</span>
+            <a href="#home">Back to top ↑</a>
+        </div>
+    </footer>
+    <script>
+        const menuButton = document.querySelector(".menu-toggle");
+        const navigation = document.querySelector("#nav-links");
+
+        menuButton.addEventListener("click", () => {
+            const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+            menuButton.setAttribute("aria-expanded", String(!isOpen));
+            menuButton.setAttribute("aria-label", isOpen ? "Open navigation menu" : "Close navigation menu");
+            navigation.classList.toggle("is-open", !isOpen);
+        });
+
+        navigation.addEventListener("click", (event) => {
+            if (event.target.closest("a")) {
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.setAttribute("aria-label", "Open navigation menu");
+                navigation.classList.remove("is-open");
+            }
+        });
+
+        document.querySelector("#year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
