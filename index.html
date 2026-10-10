@@ -320,6 +320,70 @@
         .footer-inner a { text-decoration: none; }
         .footer-inner a:hover { color: var(--green); }
 
+        .chat-widget { position: fixed; right: 24px; bottom: 24px; z-index: 20; display: grid; justify-items: end; gap: 12px; }
+        .chat-toggle {
+            display: inline-flex;
+            min-height: 52px;
+            align-items: center;
+            gap: 10px;
+            padding: 0 19px;
+            border: 0;
+            border-radius: 99px;
+            background: var(--green);
+            color: white;
+            box-shadow: 0 8px 25px rgb(32 35 31 / 20%);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .chat-toggle:hover { background: #294737; }
+        .chat-toggle-icon { font-size: 17px; }
+        .chat-panel {
+            display: flex;
+            width: min(370px, calc(100vw - 32px));
+            height: min(500px, calc(100dvh - 110px));
+            min-height: 340px;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: #fffefa;
+            box-shadow: 0 18px 55px rgb(32 35 31 / 18%);
+        }
+        .chat-panel[hidden] { display: none; }
+        .chat-header { display: flex; align-items: center; justify-content: space-between; padding: 15px 17px; background: var(--green); color: white; }
+        .chat-header-copy { display: grid; gap: 3px; }
+        .chat-header-copy strong { font-size: 14px; }
+        .chat-header-copy span { color: rgb(255 255 255 / 76%); font-size: 11px; }
+        .chat-close { width: 34px; height: 34px; border: 0; border-radius: 50%; background: rgb(255 255 255 / 12%); color: white; cursor: pointer; font-size: 20px; line-height: 1; }
+        .chat-messages { display: flex; flex: 1; flex-direction: column; gap: 12px; overflow-y: auto; padding: 17px; }
+        .chat-message { max-width: 88%; padding: 11px 13px; border-radius: 12px; font-size: 13px; line-height: 1.6; overflow-wrap: anywhere; }
+        .chat-message.assistant { align-self: flex-start; border: 1px solid var(--line); border-bottom-left-radius: 4px; background: var(--paper); color: #454840; }
+        .chat-message.user { align-self: flex-end; border-bottom-right-radius: 4px; background: var(--green); color: white; }
+        .chat-quick-replies { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+        .chat-quick-replies button, .chat-email-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 7px 10px;
+            border: 1px solid #cdd7c8;
+            border-radius: 99px;
+            background: white;
+            color: var(--green);
+            cursor: pointer;
+            font-size: 11px;
+            text-decoration: none;
+        }
+        .chat-quick-replies button:hover, .chat-email-link:hover { border-color: var(--green); background: #f1f4ed; }
+        .chat-email-link { margin-top: 10px; }
+        .chat-form { display: flex; gap: 8px; padding: 12px 14px; border-top: 1px solid var(--line); }
+        .chat-input { width: 100%; min-width: 0; height: 42px; padding: 0 12px; border: 1px solid var(--line); border-radius: 6px; background: white; color: var(--ink); font: inherit; font-size: 13px; }
+        .chat-input:focus { border-color: var(--green); outline: 2px solid rgb(53 91 70 / 18%); }
+        .chat-send { min-width: 54px; padding: 0 12px; border: 0; border-radius: 6px; background: var(--green); color: white; cursor: pointer; font-size: 12px; font-weight: 600; }
+        .chat-send:hover { background: #294737; }
+        .chat-privacy { margin: 0; padding: 0 14px 12px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+        .chat-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
+
         :focus-visible { outline: 3px solid #8ba95e; outline-offset: 4px; }
         @media (max-width: 760px) {
             .wrap { width: min(100% - 36px, 560px); }
@@ -358,6 +422,8 @@
             .contact { padding: 65px 0; }
             .contact-panel { padding: 39px 27px; border-top-right-radius: 48px; }
             .contact-panel::after { right: -205px; }
+            .chat-widget { right: 16px; bottom: 16px; }
+            .chat-panel { width: min(370px, calc(100vw - 32px)); height: min(500px, calc(100dvh - 94px)); }
         }
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
@@ -469,7 +535,7 @@
                 <p class="section-kicker">Let’s make it happen</p>
                 <h2>A good website could be your next big move.</h2>
                 <p>Have an idea, a project, or a site that needs a fresh start? Tell me a little about it and let’s figure out what’s possible.</p>
-                <a class="button" href="mailto:?subject=WordPress%20project%20inquiry">Get in touch <span class="arrow" aria-hidden="true">↗</span></a>
+                <a class="button" href="mailto:rahul.shirode123@gmail.com?subject=WordPress%20project%20inquiry">Get in touch <span class="arrow" aria-hidden="true">↗</span></a>
             </div>
         </section>
     </main>
@@ -480,6 +546,36 @@
             <a href="#home">Back to top ↑</a>
         </div>
     </footer>
+    <aside class="chat-widget" aria-label="Chat with Rahul">
+        <section class="chat-panel" id="chat-panel" aria-labelledby="chat-title" hidden>
+            <div class="chat-header">
+                <div class="chat-header-copy">
+                    <strong id="chat-title">Chat with Rahul</strong>
+                    <span>WordPress projects &amp; questions</span>
+                </div>
+                <button class="chat-close" id="chat-close" type="button" aria-label="Close chat">×</button>
+            </div>
+            <div class="chat-messages" id="chat-messages" role="log" aria-live="polite" aria-relevant="additions">
+                <div class="chat-message assistant">
+                    Hi! I’m Rahul’s website assistant. I can answer questions about services, pricing, and project inquiries.
+                    <div class="chat-quick-replies">
+                        <button type="button" data-reply="What services do you offer?">Services</button>
+                        <button type="button" data-reply="How does pricing work?">Pricing</button>
+                        <button type="button" data-reply="I want to start a project">Start a project</button>
+                    </div>
+                </div>
+            </div>
+            <form class="chat-form" id="chat-form">
+                <label class="chat-sr-only" for="chat-input">Your message</label>
+                <input class="chat-input" id="chat-input" name="message" type="text" maxlength="500" placeholder="Type your message…" autocomplete="off" required>
+                <button class="chat-send" type="submit">Send</button>
+            </form>
+            <p class="chat-privacy">Project details are added to an email draft. Nothing is sent until you review and send it.</p>
+        </section>
+        <button class="chat-toggle" id="chat-toggle" type="button" aria-expanded="false" aria-controls="chat-panel">
+            <span class="chat-toggle-icon" aria-hidden="true">✳</span> Chat with Rahul
+        </button>
+    </aside>
     <script>
         const menuButton = document.querySelector(".menu-toggle");
         const navigation = document.querySelector("#nav-links");
@@ -500,6 +596,112 @@
         });
 
         document.querySelector("#year").textContent = new Date().getFullYear();
+
+        const chatToggle = document.querySelector("#chat-toggle");
+        const chatPanel = document.querySelector("#chat-panel");
+        const chatClose = document.querySelector("#chat-close");
+        const chatMessages = document.querySelector("#chat-messages");
+        const chatForm = document.querySelector("#chat-form");
+        const chatInput = document.querySelector("#chat-input");
+        const inquiry = { name: "", email: "", details: "" };
+        let inquiryStep = "";
+
+        function setChatOpen(isOpen) {
+            chatPanel.hidden = !isOpen;
+            chatToggle.setAttribute("aria-expanded", String(isOpen));
+            if (isOpen) chatInput.focus();
+            else chatToggle.focus();
+        }
+
+        function addMessage(text, sender) {
+            const message = document.createElement("div");
+            message.className = `chat-message ${sender}`;
+            message.textContent = text;
+            chatMessages.append(message);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return message;
+        }
+
+        function addProjectEmailLink() {
+            const body = [
+                `Name: ${inquiry.name}`,
+                `Email: ${inquiry.email}`,
+                "",
+                "Project details:",
+                inquiry.details
+            ].join("\n");
+            const emailLink = document.createElement("a");
+            emailLink.className = "chat-email-link";
+            emailLink.href = `mailto:rahul.shirode123@gmail.com?subject=${encodeURIComponent("WordPress project inquiry")}&body=${encodeURIComponent(body)}`;
+            emailLink.textContent = "Review and send email ↗";
+            emailLink.setAttribute("aria-label", "Review and send your project inquiry by email");
+            const message = addMessage(`Thanks, ${inquiry.name}! Your project inquiry is ready as an email draft. Review it and press send when you’re ready.`, "assistant");
+            message.append(emailLink);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function handleChatReply(reply) {
+            const message = reply.trim();
+            if (!message) return;
+            addMessage(message, "user");
+
+            if (inquiryStep === "name") {
+                inquiry.name = message;
+                inquiryStep = "email";
+                addMessage(`Thanks, ${inquiry.name}. What email address should Rahul use to get back to you?`, "assistant");
+                return;
+            }
+
+            if (inquiryStep === "email") {
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(message)) {
+                    addMessage("That email address doesn’t look quite right. Please enter a valid address so Rahul can reply.", "assistant");
+                    return;
+                }
+                inquiry.email = message;
+                inquiryStep = "details";
+                addMessage("What would you like help with? A sentence or two about your website or project is perfect.", "assistant");
+                return;
+            }
+
+            if (inquiryStep === "details") {
+                inquiry.details = message;
+                inquiryStep = "";
+                addProjectEmailLink();
+                return;
+            }
+
+            const normalized = message.toLowerCase();
+            if (/\b(start|project|hire|work together|get started|build me|need a website)\b/.test(normalized)) {
+                inquiryStep = "name";
+                addMessage("Great! I can help prepare a project inquiry for Rahul. What name should I include?", "assistant");
+            } else if (/\b(price|pricing|cost|quote|budget|rate)\b/.test(normalized)) {
+                addMessage("Project pricing depends on the scope, features, and goals. Share a few details about what you have in mind and Rahul can discuss a tailored quote.", "assistant");
+            } else if (/\b(time|timeline|long|turnaround|deadline|launch)\b/.test(normalized)) {
+                addMessage("Timelines depend on the project scope and requirements. Send Rahul a short description of your project to discuss a realistic schedule.", "assistant");
+            } else if (/\b(service|services|wordpress|woocommerce|store|website|support|maintenance|care)\b/.test(normalized)) {
+                addMessage("Rahul works on custom WordPress websites, WooCommerce stores, responsive design, site improvements, and ongoing WordPress care.", "assistant");
+            } else if (/\b(contact|email|rahul|talk|speak|message)\b/.test(normalized)) {
+                addMessage("You can email Rahul directly at rahul.shirode123@gmail.com, or tell me about your project and I’ll prepare an email draft for you.", "assistant");
+            } else {
+                addMessage("I can help with WordPress services, WooCommerce, project pricing, timelines, or getting a project inquiry to Rahul. What would you like to know?", "assistant");
+            }
+        }
+
+        chatToggle.addEventListener("click", () => setChatOpen(chatPanel.hidden));
+        chatClose.addEventListener("click", () => setChatOpen(false));
+        chatPanel.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") setChatOpen(false);
+        });
+        chatMessages.addEventListener("click", (event) => {
+            const replyButton = event.target.closest("[data-reply]");
+            if (replyButton) handleChatReply(replyButton.dataset.reply);
+        });
+        chatForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            handleChatReply(chatInput.value);
+            chatInput.value = "";
+            chatInput.focus();
+        });
     </script>
 </body>
 </html>
