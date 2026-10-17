@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8f7f4">
+    <meta name="description" content="Frequently asked questions about working with Rahul Shirode on WordPress projects.">
+    <title>FAQ | Rahul Shirode</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --paper: #f8f7f4;
+            --ink: #20231f;
+            --muted: #70736c;
+            --line: #e5e3dd;
+            --green: #355b46;
+            --lime: #d4f078;
+            --serif: Georgia, "Times New Roman", serif;
+            --sans: "Segoe UI", Arial, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--sans);
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; }
+        .wrap { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+
+        .site-header {
+            position: sticky;
+            z-index: 10;
+            top: 0;
+            border-bottom: 1px solid rgb(32 35 31 / 7%);
+            background: rgb(248 247 244 / 92%);
+            backdrop-filter: blur(14px);
+        }
+        .nav {
+            display: flex;
+            min-height: 76px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: -.04em;
+        }
+        .brand-mark {
+            display: grid;
+            width: 32px;
+            height: 32px;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--green);
+            color: white;
+            font-family: var(--serif);
+            font-size: 16px;
+            font-weight: 400;
+        }
+        .nav-links { display: flex; align-items: center; gap: 34px; }
+        .nav-links a {
+            text-decoration: none;
+            color: #555851;
+            font-size: 13px;
+            transition: color .2s ease;
+        }
+        .nav-links a:hover { color: var(--green); }
+        .nav-links .nav-cta {
+            padding: 11px 17px;
+            border: 1px solid var(--line);
+            border-radius: 99px;
+            color: var(--ink);
+            transition: background .2s ease, border-color .2s ease;
+        }
+        .nav-links .nav-cta:hover { border-color: var(--green); background: white; }
+
+        .page-hero {
+            padding: 86px 0 44px;
+        }
+        .page-hero-box {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 18px;
+            align-items: end;
+            padding-bottom: 26px;
+            border-bottom: 1px solid var(--line);
+        }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin: 0 0 18px;
+            color: var(--green);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+        }
+        .eyebrow::before {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #85a75d;
+            content: "";
+        }
+        h1, h2, h3, p { margin-top: 0; }
+        h1 {
+            margin-bottom: 0;
+            font-size: clamp(42px, 5vw, 72px);
+            font-weight: 500;
+            letter-spacing: -.075em;
+            line-height: .96;
+        }
+        .page-hero-copy {
+            max-width: 500px;
+            margin: 0;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 16px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: #fbfaf8;
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .faq-wrap {
+            padding: 54px 0 96px;
+        }
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        details {
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .46);
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+        details[open] {
+            border-color: rgb(53 91 70 / 35%);
+            box-shadow: 0 12px 30px rgb(32 35 31 / 4%);
+        }
+        summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 22px 24px;
+            list-style: none;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: -.03em;
+        }
+        summary::-webkit-details-marker { display: none; }
+        summary::after {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            background: var(--paper);
+            color: var(--green);
+            content: "+";
+            display: grid;
+            place-items: center;
+            font-size: 18px;
+            line-height: 1;
+        }
+        details[open] summary::after { content: "−"; }
+        .faq-answer {
+            padding: 0 24px 22px;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        .faq-answer p { margin: 0; }
+
+        .faq-cta {
+            margin-top: 48px;
+            padding: 42px 32px;
+            border-radius: 8px 72px 8px 8px;
+            background: var(--green);
+            color: white;
+        }
+        .faq-cta h2 {
+            margin-bottom: 10px;
+            font-size: clamp(30px, 4vw, 44px);
+            font-weight: 500;
+            letter-spacing: -.06em;
+            line-height: 1.1;
+        }
+        .faq-cta p {
+            max-width: 560px;
+            margin-bottom: 22px;
+            color: rgb(255 255 255 / 75%);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        .button {
+            display: inline-flex;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 19px;
+            border: 1px solid var(--lime);
+            border-radius: 99px;
+            background: var(--lime);
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: transform .2s ease, background .2s ease;
+        }
+        .button:hover { transform: translateY(-2px); background: #e0fa9e; }
+        .arrow { font-size: 17px; line-height: 1; }
+
+        footer { padding: 22px 0; border-top: 1px solid var(--line); }
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+        .footer-inner a { text-decoration: none; }
+        .footer-inner a:hover { color: var(--green); }
+
+        @media (max-width: 760px) {
+            .wrap { width: min(100% - 36px, 560px); }
+            .nav { min-height: 68px; }
+            .page-hero { padding-top: 56px; }
+            .page-hero-box { grid-template-columns: 1fr; align-items: start; }
+            .faq-wrap { padding-top: 38px; }
+            .faq-cta { padding: 34px 24px; }
+            summary { padding: 18px 18px; font-size: 16px; }
+            .faq-answer { padding: 0 18px 18px; }
+            .footer-inner { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav wrap" aria-label="Main navigation">
+            <a class="brand" href="index.html" aria-label="Rahul Shirode, home">
+                <span class="brand-mark" aria-hidden="true">R</span>
+                <span>Rahul Shirode</span>
+            </a>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html#services">What I do</a>
+                <a href="index.html#about">About</a>
+                <a href="faq.html">FAQ</a>
+                <a class="nav-cta" href="mailto:rahul.shirode123@gmail.com?subject=WordPress%20project%20inquiry">Let’s talk <span class="arrow" aria-hidden="true">↗</span></a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="wrap page-hero-box">
+                <div>
+                    <p class="eyebrow">Frequently asked questions</p>
+                    <h1>Everything you need to know before we start.</h1>
+                </div>
+                <div class="hero-badge">Clear process • Thoughtful work</div>
+            </div>
+        </section>
+
+        <section class="faq-wrap">
+            <div class="wrap faq-grid">
+                <details open>
+                    <summary>What kind of websites do you build?</summary>
+                    <div class="faq-answer">
+                        <p>I build WordPress websites for businesses and individuals who want a site that looks good, works well, and is easy to manage after launch. That includes business websites, brochure sites, custom WordPress builds, and WooCommerce storefronts.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Can you improve an existing website?</summary>
+                    <div class="faq-answer">
+                        <p>Yes. I can refresh an older site, improve the layout, streamline the content, tighten up the mobile experience, fix functionality issues, and help make the site feel more aligned with how you want to present your business.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Do you work with WooCommerce?</summary>
+                    <div class="faq-answer">
+                        <p>Absolutely. I build and refine WooCommerce stores with a focus on clarity, usability, and conversion. The goal is always to make it easy for people to browse, understand, and purchase without friction.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>How long does a project usually take?</summary>
+                    <div class="faq-answer">
+                        <p>It depends on the scope. A smaller site may take a few weeks, while a more extensive build or redesign will naturally take longer. I’ll give you a realistic timeline after we talk through the project goals and content needs.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>How do you price a website project?</summary>
+                    <div class="faq-answer">
+                        <p>Pricing is based on the project scope, complexity, and the amount of design, development, and support involved. I prefer to keep it transparent and practical, so we can plan around what you need without unnecessary complexity.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Do you help with content or design direction?</summary>
+                    <div class="faq-answer">
+                        <p>Yes. I can help shape the structure and messaging of the site, suggest practical design direction, and support the presentation of your content so it feels clear and intentional on the page.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Will I be able to manage my site after launch?</summary>
+                    <div class="faq-answer">
+                        <p>Yes. I build with simplicity in mind, so the site is easy to manage afterward. I can also provide guidance, maintenance support, or future updates depending on what you need.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>What do you need from me to get started?</summary>
+                    <div class="faq-answer">
+                        <p>Usually, I need a basic understanding of your goals, any examples you like, your content, and a sense of your audience. From there, I’ll help shape the plan and guide the next steps.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="wrap">
+                <div class="faq-cta">
+                    <p class="eyebrow" style="color: var(--lime); margin-bottom: 12px;">Still have a question?</p>
+                    <h2>Let’s talk through your project.</h2>
+                    <p>If you want a custom website, a refresh, or support for an existing WordPress site, I’d be happy to help you figure out the right next step.</p>
+                    <a class="button" href="mailto:rahul.shirode123@gmail.com?subject=WordPress%20project%20inquiry">Get in touch <span class="arrow" aria-hidden="true">↗</span></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner wrap">
+            <span>© <span id="year">2026</span> Rahul Shirode. Built with care.</span>
+            <a href="index.html">Back to home ↑</a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
