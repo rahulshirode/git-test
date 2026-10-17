@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8f7f4">
+    <meta name="description" content="About Rahul Shirode, a WordPress developer building thoughtful, practical websites for businesses.">
+    <title>About | Rahul Shirode</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --paper: #f8f7f4;
+            --ink: #20231f;
+            --muted: #70736c;
+            --line: #e5e3dd;
+            --green: #355b46;
+            --lime: #d4f078;
+            --serif: Georgia, "Times New Roman", serif;
+            --sans: "Segoe UI", Arial, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--sans);
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; }
+        .wrap { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+
+        .site-header {
+            position: sticky;
+            z-index: 10;
+            top: 0;
+            border-bottom: 1px solid rgb(32 35 31 / 7%);
+            background: rgb(248 247 244 / 92%);
+            backdrop-filter: blur(14px);
+        }
+        .nav {
+            display: flex;
+            min-height: 76px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: -.04em;
+        }
+        .brand-mark {
+            display: grid;
+            width: 32px;
+            height: 32px;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--green);
+            color: white;
+            font-family: var(--serif);
+            font-size: 16px;
+            font-weight: 400;
+        }
+        .nav-links { display: flex; align-items: center; gap: 34px; }
+        .nav-links a {
+            text-decoration: none;
+            color: #555851;
+            font-size: 13px;
+            transition: color .2s ease;
+        }
+        .nav-links a:hover { color: var(--green); }
+        .nav-links .nav-cta {
+            padding: 11px 17px;
+            border: 1px solid var(--line);
+            border-radius: 99px;
+            color: var(--ink);
+            transition: background .2s ease, border-color .2s ease;
+        }
+        .nav-links .nav-cta:hover { border-color: var(--green); background: white; }
+
+        .page-hero { padding: 86px 0 44px; }
+        .page-hero-box {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 36px;
+            align-items: end;
+            padding-bottom: 28px;
+            border-bottom: 1px solid var(--line);
+        }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin: 0 0 18px;
+            color: var(--green);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+        }
+        .eyebrow::before {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #85a75d;
+            content: "";
+        }
+        h1, h2, h3, p { margin-top: 0; }
+        h1 {
+            margin-bottom: 0;
+            font-size: clamp(42px, 5vw, 76px);
+            font-weight: 500;
+            letter-spacing: -.075em;
+            line-height: .96;
+        }
+        .page-hero-copy {
+            margin: 0;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        .portrait {
+            display: grid;
+            place-items: center;
+            min-height: 280px;
+            border: 1px solid var(--line);
+            border-radius: 24px 8px 24px 8px;
+            background: linear-gradient(135deg, #e7ebdf, #f7f4ef);
+            color: var(--green);
+            font-family: var(--serif);
+            font-size: clamp(42px, 4vw, 72px);
+            font-style: italic;
+            box-shadow: 0 18px 35px rgb(32 35 31 / 5%);
+        }
+
+        .story { padding: 62px 0 20px; }
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1.08fr .92fr;
+            gap: 52px;
+            align-items: start;
+        }
+        .story-copy p {
+            margin-bottom: 18px;
+            color: #50544d;
+            font-size: 15px;
+            line-height: 1.9;
+        }
+        .values {
+            display: grid;
+            gap: 18px;
+        }
+        .value-card {
+            padding: 24px 22px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: rgba(255,255,255,.4);
+        }
+        .value-card h3 {
+            margin-bottom: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -.03em;
+        }
+        .value-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .process { padding: 72px 0; }
+        .section-kicker {
+            margin-bottom: 14px;
+            color: var(--green);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+        }
+        h2 {
+            margin-bottom: 0;
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 500;
+            letter-spacing: -.065em;
+            line-height: 1.08;
+        }
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 34px;
+        }
+        .process-card {
+            min-height: 220px;
+            padding: 26px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #fbfaf8;
+        }
+        .process-number {
+            display: inline-grid;
+            width: 38px;
+            height: 38px;
+            place-items: center;
+            border-radius: 50%;
+            background: #edf0e7;
+            color: var(--green);
+            font-family: var(--serif);
+            font-size: 15px;
+            margin-bottom: 26px;
+        }
+        .process-card h3 {
+            margin-bottom: 10px;
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: -.03em;
+        }
+        .process-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.75;
+        }
+
+        .cta {
+            margin-bottom: 96px;
+            padding: 42px 32px;
+            border-radius: 8px 72px 8px 8px;
+            background: var(--green);
+            color: white;
+        }
+        .cta h2 {
+            margin-bottom: 10px;
+            font-size: clamp(30px, 4vw, 44px);
+            font-weight: 500;
+            letter-spacing: -.06em;
+            line-height: 1.1;
+        }
+        .cta p {
+            max-width: 580px;
+            margin-bottom: 22px;
+            color: rgb(255 255 255 / 75%);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        .button {
+            display: inline-flex;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 19px;
+            border: 1px solid var(--lime);
+            border-radius: 99px;
+            background: var(--lime);
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: transform .2s ease, background .2s ease;
+        }
+        .button:hover { transform: translateY(-2px); background: #e0fa9e; }
+        .arrow { font-size: 17px; line-height: 1; }
+
+        footer { padding: 22px 0; border-top: 1px solid var(--line); }
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+        .footer-inner a { text-decoration: none; }
+        .footer-inner a:hover { color: var(--green); }
+
+        @media (max-width: 760px) {
+            .wrap { width: min(100% - 36px, 560px); }
+            .nav { min-height: 68px; }
+            .page-hero { padding-top: 56px; }
+            .page-hero-box, .story-grid, .process-grid { grid-template-columns: 1fr; }
+            .cta { padding: 34px 24px; }
+            .footer-inner { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav wrap" aria-label="Main navigation">
+            <a class="brand" href="index.html" aria-label="Rahul Shirode, home">
+                <span class="brand-mark" aria-hidden="true">R</span>
+                <span>Rahul Shirode</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#services">What I do</a>
+                <a href="about.html">About</a>
+                <a href="faq.html">FAQ</a>
+                <a href="contact.html">Contact</a>
+                <a class="nav-cta" href="contact.html">Let’s talk <span class="arrow" aria-hidden="true">↗</span></a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="wrap page-hero-box">
+                <div>
+                    <p class="eyebrow">About</p>
+                    <h1>Thoughtful websites start with a clear idea.</h1>
+                </div>
+                <p class="page-hero-copy">I work with businesses that want a website that feels honest, easy to use, and built for real people—not just for appearances.</p>
+            </div>
+        </section>
+
+        <section class="story">
+            <div class="wrap story-grid">
+                <div class="story-copy">
+                    <p>I’m Rahul Shirode, a WordPress developer focused on building practical websites that help brands present themselves clearly and professionally online. I care about structure, usability, and the details that make a site feel calm, confident, and easy to navigate.</p>
+                    <p>My work blends design thinking and technical execution. That means your website doesn’t just look considered—it also works smoothly, loads well, and is easy to manage once it’s live. I pay attention to how people actually experience a site, from the first click to the final conversion.</p>
+                    <p>Whether you’re launching something new, refreshing an older website, or improving a shop that needs a clearer path to purchase, I aim to create a digital presence that supports your goals without adding unnecessary complexity.</p>
+                </div>
+                <div class="portrait" aria-label="Rahul Shirode initials">R.</div>
+            </div>
+        </section>
+
+        <section class="process">
+            <div class="wrap">
+                <p class="section-kicker">How I work</p>
+                <h2>Simple process. Clear decisions.</h2>
+                <div class="process-grid">
+                    <article class="process-card">
+                        <span class="process-number" aria-hidden="true">01</span>
+                        <h3>Understand the need</h3>
+                        <p>I start by learning what matters most to you: your goals, audience, current challenges, and what success looks like.</p>
+                    </article>
+                    <article class="process-card">
+                        <span class="process-number" aria-hidden="true">02</span>
+                        <h3>Shape the direction</h3>
+                        <p>I turn the ideas into a piece of structure, design, and content flow that feels purposeful and easy to follow.</p>
+                    </article>
+                    <article class="process-card">
+                        <span class="process-number" aria-hidden="true">03</span>
+                        <h3>Build and refine</h3>
+                        <p>I develop the site in a clean, practical way, testing how it works and polishing the details that matter most.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="wrap">
+            <div class="cta">
+                <p class="eyebrow" style="color: var(--lime); margin-bottom: 12px;">Let’s build something useful</p>
+                <h2>Need a website that feels right for your business?</h2>
+                <p>I work with thoughtful people and growing brands who want a cleaner, clearer online presence with less friction and more confidence.</p>
+                <a class="button" href="contact.html">Start a conversation <span class="arrow" aria-hidden="true">↗</span></a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner wrap">
+            <span>© <span id="year">2026</span> Rahul Shirode. Built with care.</span>
+            <a href="index.html">Back to home ↑</a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
